@@ -22,12 +22,12 @@ var bot = new builder.UniversalBot(connector);
 var intents = new builder.IntentDialog();
 bot.dialog('/', intents);
 
-intents.matches(/^echo/i, [
+intents.matches(/^who killed you/i, [
     function (session) {
         builder.Prompts.text(session, "What would you like me to say?");
     },
     function (session, results) {
-        session.send("Ok... %s", results.response);
+        session.send("It was...:dolores: %s", results.response);
     }
 ]);
 /*bot.dialog('/', [
