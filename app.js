@@ -24,7 +24,7 @@ bot.dialog('/', intents);
 
 intents.matches(/^who killed you/i, [
     function (session, results) {
-        session.send("It was...:dolores: %s", results.response);
+        session.send("It was...:dolores:");
     }
 ]);
 /*bot.dialog('/', [
