@@ -21,15 +21,21 @@ server.post('/api/messages', connector.listen());
 /*bot.dialog('/', function (session) {
     session.send("Hello World");
 });*/
-var bot = new builder.TextBot();
-bot.add('/', function (session) {
-    if (!session.userData.name) {
-        session.beginDialog('/profile');
-    } else {
+var bot = new builder.UniversalBot(connector);
+bot.dialog('/', [
+    function (session, args, next) {
+        if (!session.userData.name) {
+            session.beginDialog('/profile');
+        } else {
+            next();
+        }
+    },
+    function (session, results) {
         session.send('Hello %s!', session.userData.name);
     }
-});
-bot.add('/profile', [
+]);
+
+bot.dialog('/profile', [
     function (session) {
         builder.Prompts.text(session, 'Hi! What is your name?');
     },
