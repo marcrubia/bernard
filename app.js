@@ -23,9 +23,6 @@ var intents = new builder.IntentDialog();
 bot.dialog('/', intents);
 
 intents.matches(/^who killed you/i, [
-    function (session) {
-        builder.Prompts.text(session, "What would you like me to say?");
-    },
     function (session, results) {
         session.send("It was...:dolores: %s", results.response);
     }
