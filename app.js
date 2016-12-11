@@ -18,11 +18,19 @@ var connector = new builder.ChatConnector({
 server.post('/api/messages', connector.listen());
 
 // Create bot dialogs
-/*bot.dialog('/', function (session) {
-    session.send("Hello World");
-});*/
 var bot = new builder.UniversalBot(connector);
-bot.dialog('/', [
+var intents = new builder.IntentDialog();
+bot.dialog('/', intents);
+
+intents.matches(/^echo/i, [
+    function (session) {
+        builder.Prompts.text(session, "What would you like me to say?");
+    },
+    function (session, results) {
+        session.send("Ok... %s", results.response);
+    }
+]);
+/*bot.dialog('/', [
     function (session, args, next) {
         if (!session.userData.name) {
             session.beginDialog('/profile');
@@ -43,7 +51,7 @@ bot.dialog('/profile', [
         session.userData.name = results.response;
         session.endDialog();
     }
-]);
+]);*/
 
 
 
