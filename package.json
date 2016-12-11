@@ -1,0 +1,28 @@
+{
+  "name": "bernard",
+  "version": "1.0.0",
+  "description": "A bot to help you with several stuff",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcrubia/bernard.git"
+  },
+  "keywords": [
+    "bot",
+    "bernard",
+    "billy"
+  ],
+  "author": "Luthor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcrubia/bernard/issues"
+  },
+  "homepage": "https://github.com/marcrubia/bernard#readme",
+  "dependencies": {
+    "botbuilder": "^3.4.4",
+    "restify": "^4.3.0"
+  }
+}
