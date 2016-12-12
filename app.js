@@ -1,6 +1,7 @@
 // Add your requirements
 var restify = require('restify'); 
-var builder = require('botbuilder'); 
+var builder = require('botbuilder');
+var tracking = require('./tracking'); 
 
 // Setup Restify Server
 var server = restify.createServer();
@@ -22,11 +23,17 @@ var bot = new builder.UniversalBot(connector);
 var intents = new builder.IntentDialog();
 bot.dialog('/', intents);
 
-intents.matches(/^who killed you/i, [
+intents.matches(/^tracking/i, [
+    function (session) {
+        builder.Prompts.text(session, "Send me the tracking link!");
+    },
     function (session, results) {
-        session.send("It was...:dolores:");
+        session.send(tracking.resolveTrackingLinkIssue(results.response));
     }
 ]);
+
+
+
 /*bot.dialog('/', [
     function (session, args, next) {
         if (!session.userData.name) {
